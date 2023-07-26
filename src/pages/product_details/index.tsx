@@ -38,7 +38,7 @@ function ProductDetails() {
       </div>
       {(product.category == "men's clothing" ||
         product.category == "women's clothing") && (
-        <div className="flex justify-between">
+        <div className="flex justify-between md:px-20">
           <div className="flex flex-col">
             <p className="text-sm">Size</p>
             <div className="flex justify-center items-center rounded-full mt-1 gap-3 text-sm">
@@ -131,10 +131,10 @@ function ProductDetails() {
           </div>
         </div>
       )}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between md:px-20 items-center mb-6">
         <h1 className="font-extrabold text-4xl">${product.price}</h1>
         <a href="https://github.com/owhenrique" target="_blank">
-          <div className="bg-black flex justify-evenly items-center rounded-full min-h-[40px] min-w-[150px] md:h-[60px] md:w-[200px] text-white">
+          <div className="bg-black flex justify-evenly items-center rounded-full min-h-[40px] min-w-[150px] md:h-[60px] text-white">
             <MdShoppingCart />
             <h1>Add to Cart</h1>
           </div>
