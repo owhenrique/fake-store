@@ -16,15 +16,15 @@ function Home() {
   }
 
   return (
-    <div className="grid grid-cols-2 grid-flow-rows gap-10 justify-center items-center m-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-flow-rows gap-10 justify-center items-center m-6">
       {products?.map((products) => (
         <Link to={`/${products.id}`}>
-          <div className="flex flex-col justify-evenly items-center outline outline-offset-2 outline-1 h-[250px] rounded-sm my-2">
-            <img src={products.image} className="h-[80px] object-contain" />
-            <div className="flex flex-col justify-evenly items-center gap-2 text-center text-sm mb-0 before:content-[''] before:block before:bg-black before:w-[150px] before:h-[1px] before:mt-1">
-              <span>{products.title}</span>
-              <span>${products.price}</span>
-              <span>{products.id}</span>
+          <div className="flex flex-col justify-evenly items-center h-[250px] border-2 border-gray-100 rounded-md shadow-lg">
+            <img src={products.image} className="h-[80px] object-contain"/>
+            <span className="before:content-[''] before:block before:bg-gray-300 before:w-full before:h-1"></span>
+            <div className="flex flex-col justify-between items-center text-justify text-sm px-4">
+              <h1 className="font-bold">{products.title}</h1>
+              <p className="text-gray-500">${products.price}</p>
             </div>
           </div>
         </Link>
