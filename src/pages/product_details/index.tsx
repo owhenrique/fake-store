@@ -4,10 +4,11 @@ import { Link, useParams } from "react-router-dom";
 
 import { IoIosArrowBack } from "react-icons/io";
 import { MdShoppingCart } from "react-icons/md";
+import { Product } from "../../types/data.types";
 
 function ProductDetails() {
   const { product_id } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState<Product | null>(null);
   const [productSize, setProductSize] = useState(0);
   const [productColor, setProductColor] = useState(0);
 
@@ -17,9 +18,10 @@ function ProductDetails() {
 
   const handleData = async () => {
     const { data } = await axios.get(
-      `https://fakestoreapi.com/products/${product_id}`
+      `http://localhost:8000/api/v1/products/${product_id}`
     );
-    setProduct(data);
+    console.log(data);
+    setProduct(data.data);
   };
 
   return (
@@ -29,15 +31,15 @@ function ProductDetails() {
           <IoIosArrowBack size={20} />
         </div>
       </Link>
-      <img src={product.image} className="m-0 h-[40vh] object-contain" />
+      <img src={product?.image} className="m-0 h-[40vh] object-contain" />
       <div className="text-justify flex flex-col justify-center items-center gap-3">
-        <h1 className="font-bold text-2xl">{product.title}</h1>
+        <h1 className="font-bold text-2xl">{product?.title}</h1>
         <p className="text-gray-500 font-light text-sm after:context-[''] after:block after:bg-gray-200 after:h-[1px] after:w-full after:mt-3">
-          {product.description}
+          {product?.description}
         </p>
       </div>
-      {(product.category == "men's clothing" ||
-        product.category == "women's clothing") && (
+      {(product?.category == "men's clothing" ||
+        product?.category == "women's clothing") && (
         <div className="flex justify-between md:px-20">
           <div className="flex flex-col">
             <p className="text-sm">Size</p>
@@ -132,9 +134,9 @@ function ProductDetails() {
         </div>
       )}
       <div className="flex justify-between md:px-20 items-center mb-6">
-        <h1 className="font-extrabold text-4xl">${product.price}</h1>
+        <h1 className="font-extrabold text-4xl">${product?.price}</h1>
         <a href="https://github.com/owhenrique" target="_blank">
-          <div className="bg-black flex justify-evenly items-center rounded-full min-h-[40px] min-w-[150px] md:h-[60px] text-white">
+          <div className="bg-black flex justify-evenly items-center rounded-full min-h-[40px] min-w-[140px] md:h-[60px] text-white">
             <MdShoppingCart />
             <h1>Add to Cart</h1>
           </div>
